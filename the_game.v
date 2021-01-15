@@ -465,231 +465,68 @@ module the_game(
 				end
 				4:  //左下
 				begin
-					if (ball_y == 1) 
+					if (ball_x == 0)
 					begin
-						if (ball_x == 0)
-						begin
-							if (ball_x == plate_xl-1 || ball_x == plate_xl) 
-							begin
-								ball_x = ball_x + 1;
-								ball_y = ball_y + 1;
-								move_mode = 3;
-							end
-							else 
-							begin
-								lose = 1;
-							end
-						end
-						if (ball_x == 7)
-						begin
-							if (ball_x == plate_xl+2 || ball_x == plate_xl+3) 
-							begin
-								ball_x = ball_x - 1;
-								ball_y = ball_y + 1;
-								move_mode = 2;
-							end
-							else 
-							begin
-								lose = 1;
-							end
-						end
+						ball_x = ball_x +1;
+						ball_y = ball_y -1;
+						move_mode = 4;
 					end
-					else 
+					else
 					begin
-						if (LightR_reg[ball_x][ball_y-1] == 0)
-						begin
-							LightR_reg[ball_x][ball_y-1] = 1;
-							LightG_reg[ball_x][ball_y-1] = 1;
-							LightB_reg[ball_x][ball_y-1] = 1;
-							if (ball_x == 0) 
-							begin
-								ball_x = ball_x + 1;
-								ball_y = ball_y + 1;
-								move_mode = 3; 	
-							end	
-							else if (LightR_reg[ball_x-1][ball_y] == 0) 
-							begin
-								LightR_reg[ball_x-1][ball_y] = 1;
-								LightG_reg[ball_x-1][ball_y] = 1;
-								LightB_reg[ball_x-1][ball_y] = 1;
-								ball_x = ball_x + 1;
-								ball_y = ball_y + 1;
-								move_mode = 3;		
-							end
-							else 
-							begin
-								if (LightR_reg[ball_x-1][ball_y+1] == 0)
-								begin
-									LightR_reg[ball_x-1][ball_y+1] = 1;
-									LightG_reg[ball_x-1][ball_y+1] = 1;
-									LightB_reg[ball_x-1][ball_y+1] = 1;
-									ball_x = ball_x + 1;
-									ball_y = ball_y + 1;
-									move_mode = 3;
-								end
-								else 
-								begin
-									ball_x = ball_x - 1;
-									ball_y = ball_y + 1;
-									move_mode = 2;
-								end
-							end
+						ball_x = ball_x -1;
+						ball_y = ball_y -1;	
+					end
+					if (ball_y == 1) begin 	//如果在板子上一層
+						if (plate_xl+1 == ball_x) begin 	//打到板子中間
+							ball_y = ball_y + 1;
+							move_mode = 0;
 						end
-						else 
-						begin
-							if (LightR_reg[ball_x-1][ball_y] == 0)
-							begin
-								LightR_reg[ball_x-1][ball_y] = 1;
-								LightG_reg[ball_x-1][ball_y] = 1;
-								LightB_reg[ball_x-1][ball_y] = 1;
-								if (LightR_reg[ball_x+1][ball_y-1] == 0)
-								begin
-									LightR_reg[ball_x+1][ball_y-1] = 1;
-									LightG_reg[ball_x+1][ball_y-1] = 1;
-									LightB_reg[ball_x+1][ball_y-1] = 1;
-									ball_x = ball_x + 1;
-									ball_y = ball_y + 1;
-									move_mode = 3;
-								end
-								else 
-								begin
-									ball_y = ball_y - 1;
-									ball_x = ball_x + 1;
-									move_mode = 5;
-								end
-							end	
-							else 
-							begin
-								if (LightR_reg[ball_x-1][ball_y-1] == 0)
-								begin
-									LightR_reg[ball_x-1][ball_y-1] = 1;
-									LightR_reg[ball_x-1][ball_y-1] = 1;
-									LightR_reg[ball_x-1][ball_y-1] = 1;
-									ball_x = ball_x + 1;
-									ball_y = ball_y + 1;
-									move_mode = 3;		
-								end	
-								else 
-								begin
-									ball_x = ball_x - 1;
-									ball_y = ball_y - 1;
-								end
-							end	
-						end	
+						else if (plate_xl == ball_x) begin 	//打到板子左邊
+							ball_x = ball_x - 1;
+							ball_y = ball_y + 1;
+							move_mode = 2;
+						end
+						else if (plate_xl+2 == ball_x) begin //打到板子右邊
+							ball_x = ball_x + 1;
+							ball_y = ball_y + 1;
+							move_mode = 3;
+						end
+						else begin 	//輸了
+							lose = 1;
+						end
 					end
 				end
 				5: 	//右下
 				begin
-				begin
-						if (ball_x == 0)
-						begin
-							if (ball_x == plate_xl-1 || ball_x == plate_xl) 
-							begin
-								ball_x = ball_x + 1;
-								ball_y = ball_y + 1;
-								move_mode = 3;
-							end
-							else 
-							begin
-								lose = 1;
-							end
-						end
-						if (ball_x == 7)
-						begin
-							if (ball_x == plate_xl+2 || ball_x == plate_xl+3) 
-							begin
-								ball_x = ball_x - 1;
-								ball_y = ball_y + 1;
-								move_mode = 2;
-							end
-							else 
-							begin
-								lose = 1;
-							end
-						end
-					end
-					else 
+					if (ball_x == 7)
 					begin
-						if (LightR_reg[ball_x][ball_y-1] == 0)
-						begin
-							LightR_reg[ball_x][ball_y-1] = 1;
-							LightG_reg[ball_x][ball_y-1] = 1;
-							LightB_reg[ball_x][ball_y-1] = 1;
-							if (ball_x == 7) 
-							begin
-								ball_x = ball_x - 1;
-								ball_y = ball_y + 1;
-								move_mode = 2; 	
-							end	
-							else if (LightR_reg[ball_x+1][ball_y] == 0) 
-							begin
-								LightR_reg[ball_x+1][ball_y] = 1;
-								LightG_reg[ball_x+1][ball_y] = 1;
-								LightB_reg[ball_x+1][ball_y] = 1;
-								ball_x = ball_x - 1;
-								ball_y = ball_y + 1;
-								move_mode = 2;		
-							end
-							else 
-							begin
-								if (LightR_reg[ball_x+1][ball_y+1] == 0)
-								begin
-									LightR_reg[ball_x+1][ball_y+1] = 1;
-									LightG_reg[ball_x+1][ball_y+1] = 1;
-									LightB_reg[ball_x+1][ball_y+1] = 1;
-									ball_x = ball_x - 1;
-									ball_y = ball_y + 1;
-									move_mode = 2;
-								end
-								else 
-								begin
-									ball_x = ball_x + 1;
-									ball_y = ball_y + 1;
-									move_mode = 3;
-								end
-							end
+						ball_x = ball_x +1;
+						ball_y = ball_y -1;
+						move_mode = 4;
+					end
+					else
+					begin
+						ball_x = ball_x -1;
+						ball_y = ball_y -1;	
+					end
+					if (ball_y == 1) begin 	//如果在板子上一層
+						if (plate_xl+1 == ball_x) begin 	//打到板子中間
+							ball_y = ball_y + 1;
+							move_mode = 0;
 						end
-						else 
-						begin
-							if (LightR_reg[ball_x+1][ball_y] == 0)
-							begin
-								LightR_reg[ball_x+1][ball_y] = 1;
-								LightG_reg[ball_x+1][ball_y] = 1;
-								LightB_reg[ball_x+1][ball_y] = 1;
-								if (LightR_reg[ball_x-1][ball_y-1] == 0)
-								begin
-									LightR_reg[ball_x-1][ball_y-1] = 1;
-									LightG_reg[ball_x-1][ball_y-1] = 1;
-									LightB_reg[ball_x-1][ball_y-1] = 1;
-									ball_x = ball_x - 1;
-									ball_y = ball_y + 1;
-									move_mode = 2;
-								end
-								else 
-								begin
-									ball_y = ball_y - 1;
-									ball_x = ball_x - 1;
-									move_mode = 4;
-								end
-							end	
-							else 
-							begin
-								if (LightR_reg[ball_x+1][ball_y-1] == 0)
-								begin
-									LightR_reg[ball_x+1][ball_y-1] = 1;
-									LightR_reg[ball_x+1][ball_y-1] = 1;
-									LightR_reg[ball_x+1][ball_y-1] = 1;
-									ball_x = ball_x - 1;
-									ball_y = ball_y + 1;
-									move_mode = 2;		
-								end	
-								else 
-								begin
-									ball_x = ball_x + 1;
-									ball_y = ball_y - 1;
-								end
-							end	
-						end	
+						else if (plate_xl == ball_x) begin 	//打到板子左邊
+							ball_x = ball_x - 1;
+							ball_y = ball_y + 1;
+							move_mode = 2;
+						end
+						else if (plate_xl+2 == ball_x) begin //打到板子右邊
+							ball_x = ball_x + 1;
+							ball_y = ball_y + 1;
+							move_mode = 3;
+						end
+						else begin 	//輸了
+							lose = 1;
+						end
 					end
 				end
 				endcase
