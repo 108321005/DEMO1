@@ -1,3 +1,4 @@
+//170011error
 module func_1hz(	//除頻器1hz更新用
 	input CLK,
 	input pause,
