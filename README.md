@@ -11,8 +11,8 @@ memnber : 108321006 王奇立 108321005 簡宏霖
 
 球打到板子有三種不同的方向
 
-寫到後面在補齊物理系統時
+寫到後面在補齊物理系統(球往左下及右下)時
 
-二維陣列太多
+出現Error (170011): Design contains 8XXX blocks of type combinational node. However, the device contains only 5XXX blocks. 
 
-導致硬體系統過仔
+助教推測為二維陣列太多導致硬體系統過仔
