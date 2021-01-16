@@ -16,3 +16,5 @@ memnber : 108321006 王奇立 108321005 簡宏霖
 出現Error (170011): Design contains 8XXX blocks of type combinational node. However, the device contains only 5XXX blocks. 
 
 助教推測為二維陣列太多導致硬體系統過仔
+
+https://drive.google.com/drive/folders/1H9iP0JqXCGkrjBgLxwYvixqAlGT-HsJ-?usp=sharing
